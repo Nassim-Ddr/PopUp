@@ -13,6 +13,7 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D Rb;
 
     private float HorizontalMovement;
+    private bool VerticalMovement;
     private bool FacingRight = true;
     private bool Grounded;
     private Vector3 ReferenceVelocity = Vector3.zero;
@@ -22,6 +23,12 @@ public class CharacterController2D : MonoBehaviour
         Rb = GetComponent<Rigidbody2D>();
         Anim = GetComponent<Animator>();
     }
+
+    void Update() 
+    {
+        HorizontalMovement = Input.GetAxisRaw("Horizontal") *RunVelocity;
+        VerticalMovement = Input.GetButton("Jump");
+    }
     
     void FixedUpdate ()
     {   
@@ -30,7 +37,6 @@ public class CharacterController2D : MonoBehaviour
     
          //Horizontal Movement
         // //RUNANIMATION
-        HorizontalMovement = Input.GetAxisRaw("Horizontal") * RunVelocity;
         Vector3 TargetVelocity = new Vector2(HorizontalMovement, Rb.velocity.y);
         Rb.velocity = Vector3.SmoothDamp(Rb.velocity, TargetVelocity, ref ReferenceVelocity, MovementSmoothing);
             
@@ -45,11 +51,11 @@ public class CharacterController2D : MonoBehaviour
         }
 
         //Vertical Movement
-        if (Grounded && Input.GetButtonDown("Jump"))
+        if (Grounded && VerticalMovement)
         {
             // //JUMPANIMATION
             Grounded = false;
-            Rb.velocity = new Vector2(Rb.velocity.x , JumpVelocity);
+            Rb.velocity += Vector2.up * JumpVelocity;
         }
     }
 
