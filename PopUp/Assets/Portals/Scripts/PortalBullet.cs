@@ -10,6 +10,7 @@ public class PortalBullet : MonoBehaviour
     public GameObject PortalOut;
 
     private Rigidbody2D Rb;
+    private Quaternion Rotation;
 
     void Start()
     {
@@ -19,12 +20,14 @@ public class PortalBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D HitInfo)
     {
+        Rotation = Quaternion.Euler(0f, 0f, HitInfo.transform.rotation.eulerAngles.z - 90); //Adjust portal rotation depending on the support that the bullet is landing on
         if (HitInfo.tag != "Player")
         {
             if (In)
-            Instantiate(PortalIn, transform.position, transform.rotation);
-            else Instantiate(PortalOut, transform.position, transform.rotation);
+            Instantiate(PortalIn, transform.position, Rotation, gameObject.transform.parent.transform);
+            else Instantiate(PortalOut, transform.position, Rotation, gameObject.transform.parent.transform);
             Destroy(gameObject, 0);
+            //BULLETOFFEFFECT OR PORTALONEFFECT
         }
     }
 }
