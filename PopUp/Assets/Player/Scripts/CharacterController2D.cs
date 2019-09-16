@@ -17,6 +17,7 @@ public class CharacterController2D : MonoBehaviour
     private bool FacingRight = true;
     private bool Grounded;
     private Vector3 ReferenceVelocity = Vector3.zero;
+    private float MaxVelocity = 50f;
 
     private void Awake() 
     {
@@ -56,6 +57,10 @@ public class CharacterController2D : MonoBehaviour
             // //JUMPANIMATION
             Grounded = false;
             Rb.velocity += Vector2.up * JumpVelocity;
+        }
+        if (Rb.velocity.y > MaxVelocity)
+        {
+            Rb.velocity = new Vector2(Rb.velocity.x, MaxVelocity);
         }
     }
 

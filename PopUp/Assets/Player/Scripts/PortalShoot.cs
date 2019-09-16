@@ -7,15 +7,7 @@ public class PortalShoot : MonoBehaviour
     public Transform ShootPoint;
     public GameObject PortalInBullet;
     public GameObject PortalOutBullet;
-    public PortalController PC;
 
-    private Transform Parent;
-    
-
-    void Start()
-    {
-        Parent = GameObject.Find("PortalController").transform;
-    }
 
     void Update()
     {
@@ -31,14 +23,12 @@ public class PortalShoot : MonoBehaviour
     void PortalInShoot()
     {
         //BULLETONEFFECT
-        PC.PortalCheck(true);
-        Instantiate(PortalInBullet, ShootPoint.position, ShootPoint.rotation,Parent);
+        Instantiate(PortalInBullet, ShootPoint.position, ShootPoint.rotation);
     }
 
     void PortalOutShoot() 
     {
         //BULLETONEFFECT
-        PC.PortalCheck(false);
-        Instantiate(PortalOutBullet, ShootPoint.position, ShootPoint.rotation,Parent);
+        Instantiate(PortalOutBullet, ShootPoint.position, ShootPoint.rotation);
     }
 }
