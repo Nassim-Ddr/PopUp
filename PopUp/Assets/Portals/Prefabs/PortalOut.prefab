@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5121350354215478723}
   - component: {fileID: 478956153145124250}
   - component: {fileID: 4178174245176875543}
+  - component: {fileID: 2222730287510377771}
   m_Layer: 0
   m_Name: PortalOut
   m_TagString: Portal
@@ -108,3 +109,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2222730287510377771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6818504698250231373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c53c352355c21b0f9329af2ea5cf3bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
