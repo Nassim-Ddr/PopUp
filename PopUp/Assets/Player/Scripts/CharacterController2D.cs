@@ -35,9 +35,10 @@ public class CharacterController2D : MonoBehaviour
     {   
         //Ground Check
         Grounded = Physics2D.OverlapCircle(GroundCheck.position,0.2f, WhatIsGround);
-    
-         //Horizontal Movement
-        // //RUNANIMATION
+        Anim.SetBool("Grounded", Grounded);
+
+        //Horizontal Movement
+        Anim.SetFloat("HorizontalMovement", Mathf.Abs(HorizontalMovement));
         Vector3 TargetVelocity = new Vector2(HorizontalMovement, Rb.velocity.y);
         Rb.velocity = Vector3.SmoothDamp(Rb.velocity, TargetVelocity, ref ReferenceVelocity, MovementSmoothing);
             
@@ -54,7 +55,7 @@ public class CharacterController2D : MonoBehaviour
         //Vertical Movement
         if (Grounded && VerticalMovement)
         {
-            // //JUMPANIMATION
+            Anim.SetTrigger("VerticalMovement");
             Grounded = false;
             Rb.velocity += Vector2.up * JumpVelocity;
         }

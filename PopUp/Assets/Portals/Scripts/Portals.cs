@@ -18,12 +18,15 @@ public class Portals : MonoBehaviour
             if (Destination != null)
             {
                 HitInfo.transform.position = Destination.position;
+                Rb = HitInfo.GetComponent<Rigidbody2D>();
                 if (transform.rotation != Destination.transform.rotation) // Simulate inertia 
                 {
-                    Rb = HitInfo.GetComponent<Rigidbody2D>();
-                    if (Destination.position.x > transform.position.x) Rb.velocity = new Vector2(Rb.velocity.y, -10);
-                    else Rb.velocity = new Vector2(-Rb.velocity.y, -10);
+                    if (Destination.position.x > transform.position.x) Rb.velocity = new Vector2(Rb.velocity.y * 2, -10);
+                    else Rb.velocity = new Vector2(-Rb.velocity.y * 2, -10);
                 }
+                else if (Mathf.Abs(Destination.position.x - transform.position.x) < 1) Rb.velocity = new Vector2(Rb.velocity.x,Rb.velocity.y * 0.7f); //Portal above an other. (velocity.y limit)
+                else Rb.velocity = new Vector2(Rb.velocity.x, -Rb.velocity.y);
+                
             }
         }
     }
