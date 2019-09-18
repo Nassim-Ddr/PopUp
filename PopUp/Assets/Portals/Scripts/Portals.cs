@@ -18,10 +18,11 @@ public class Portals : MonoBehaviour
             if (Destination != null)
             {
                 HitInfo.transform.position = Destination.position;
-                if (transform.rotation != Destination.transform.rotation)
+                if (transform.rotation != Destination.transform.rotation) // Simulate inertia 
                 {
                     Rb = HitInfo.GetComponent<Rigidbody2D>();
-                    Rb.velocity = new Vector2(Rb.velocity.y * 1.25f, 0);
+                    if (Destination.position.x > transform.position.x) Rb.velocity = new Vector2(Rb.velocity.y, -10);
+                    else Rb.velocity = new Vector2(-Rb.velocity.y, -10);
                 }
             }
         }
