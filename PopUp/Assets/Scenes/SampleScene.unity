@@ -131,9 +131,9 @@ GameObject:
   m_Component:
   - component: {fileID: 20872973}
   - component: {fileID: 20872972}
-  - component: {fileID: 20872974}
   - component: {fileID: 20872977}
   - component: {fileID: 20872976}
+  - component: {fileID: 20872974}
   - component: {fileID: 20872975}
   - component: {fileID: 20872978}
   m_Layer: 0
@@ -269,9 +269,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShootPoint: {fileID: 378285824}
+  HandlePoint: {fileID: 106338243}
   PortalInBullet: {fileID: 1231727717545511969, guid: c40831de3418d203486d8fba02c2ed4f,
     type: 3}
   PortalOutBullet: {fileID: 2096020924820959232, guid: 580f2273019fb8a5088b367b8d3b983d,
+    type: 3}
+  PortalIn: {fileID: 5909639967562534408, guid: 661215696bc1d4f42aacd3a22d3c712c,
+    type: 3}
+  PortalOut: {fileID: 6818504698250231373, guid: cc5b12c279bfc098e8c1bd2c06d6d308,
     type: 3}
 --- !u!114 &20872977
 MonoBehaviour:
@@ -285,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07dbb76e312eb512a16cdee829bc200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RunVelocity: 13
+  RunVelocity: 10
   MovementSmoothing: 0.07
   JumpVelocity: 2
   WhatIsGround:
@@ -311,6 +316,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &106338242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 106338243}
+  m_Layer: 0
+  m_Name: HandlePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &106338243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106338242}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.54, y: 0.01, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 378285824}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262118076
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +358,7 @@ GameObject:
   m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
-  m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -352,7 +387,7 @@ GameObject:
   - component: {fileID: 288572434}
   - component: {fileID: 288572435}
   - component: {fileID: 288572436}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall (1)
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -583,8 +618,9 @@ Transform:
   m_GameObject: {fileID: 378285823}
   m_LocalRotation: {x: 0, y: 0, z: 0.008726558, w: 0.999962}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
-  m_Children: []
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 106338243}
   m_Father: {fileID: 20872973}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1}
@@ -595,7 +631,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 378285823}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -874,7 +910,7 @@ GameObject:
   - component: {fileID: 1894927610}
   - component: {fileID: 1894927611}
   - component: {fileID: 1894927612}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wall
   m_TagString: Environment
   m_Icon: {fileID: 0}

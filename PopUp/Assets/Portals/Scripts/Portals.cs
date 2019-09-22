@@ -11,22 +11,30 @@ public class Portals : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D HitInfo)
     {
-        if (Vector3.Distance(HitInfo.transform.position, transform.position) > 0.5f)
+        if (HitInfo.gameObject.layer != 8)
         {
-            if (In) Destination = GameObject.Find("PortalOut(Clone)").GetComponent<Transform>();
-            else Destination = GameObject.Find("PortalIn(Clone)").GetComponent<Transform>();
-            if (Destination != null)
+            if (Vector3.Distance(HitInfo.transform.position, transform.position) > 0.5f)
             {
-                HitInfo.transform.position = Destination.position;
-                Rb = HitInfo.GetComponent<Rigidbody2D>();
-                if (transform.rotation != Destination.transform.rotation) // Simulate inertia 
+                if (In) Destination = GameObject.Find("PortalOut(Clone)").transform;
+                else Destination = GameObject.Find("PortalIn(Clone)").transform;
+
+                if (Destination != null)
                 {
-                    if (Destination.position.x > transform.position.x) Rb.velocity = new Vector2(Rb.velocity.y * 2, -10);
-                    else Rb.velocity = new Vector2(-Rb.velocity.y * 2, -10);
+                    HitInfo.transform.position = Destination.position;
+                    Rb = HitInfo.GetComponent<Rigidbody2D>();
+
+                    // Simulate inertia
+                    if (Rb != null)
+                    {
+                        if (transform.rotation != Destination.transform.rotation)
+                        {
+                            if (Destination.position.x > transform.position.x) Rb.velocity = new Vector2(Rb.velocity.y * 2, -10);
+                            else Rb.velocity = new Vector2(-Rb.velocity.y * 2, -10);
+                        }
+                        else if (Mathf.Abs(Destination.position.x - transform.position.x) < 1) Rb.velocity = new Vector2(Rb.velocity.x, Rb.velocity.y * 0.7f); //Portal above an other. (velocity.y limit)
+                        else Rb.velocity = new Vector2(Rb.velocity.x, -Rb.velocity.y);
+                    }
                 }
-                else if (Mathf.Abs(Destination.position.x - transform.position.x) < 1) Rb.velocity = new Vector2(Rb.velocity.x,Rb.velocity.y * 0.7f); //Portal above an other. (velocity.y limit)
-                else Rb.velocity = new Vector2(Rb.velocity.x, -Rb.velocity.y);
-                
             }
         }
     }
