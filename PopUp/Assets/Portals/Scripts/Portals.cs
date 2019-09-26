@@ -11,7 +11,7 @@ public class Portals : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D HitInfo)
     {
-        if (HitInfo.gameObject.layer != 8)
+        if (HitInfo.tag != "Environment" && HitInfo.tag != "Portal") 
         {
             if (Vector3.Distance(HitInfo.transform.position, transform.position) > 0.5f)
             {
@@ -22,7 +22,6 @@ public class Portals : MonoBehaviour
                 {
                     HitInfo.transform.position = Destination.position;
                     Rb = HitInfo.GetComponent<Rigidbody2D>();
-
                     // Simulate inertia
                     if (Rb != null)
                     {
