@@ -72,6 +72,8 @@ public class PortalShoot : MonoBehaviour
         OldPortal = GameObject.Find("PortalIn(Clone)");
         if (OldPortal != null) Destroy(OldPortal, 0);
         OldPortal = Instantiate(PortalIn, HandlePoint.position, ShootPoint.rotation, HandlePoint);
+        var Coll = OldPortal.transform.Find("Particles").GetComponent<ParticleSystem>().collision;
+        Coll.enabled = false; // To avoid Particles stuck in the ground
         CC2D.RunVelocity = CC2D.JumpVelocity = 0;
     }
 
@@ -81,6 +83,8 @@ public class PortalShoot : MonoBehaviour
         OldPortal = GameObject.Find("PortalOut(Clone)");
         if (OldPortal != null) Destroy(OldPortal, 0);
         OldPortal = Instantiate(PortalOut, HandlePoint.position, ShootPoint.rotation, HandlePoint);
+        var Coll = OldPortal.transform.Find("Particles").GetComponent<ParticleSystem>().collision;//
+        Coll.enabled = false; // To avoid Particles stuck in the ground
         CC2D.RunVelocity = CC2D.JumpVelocity = 0;
     }
 }

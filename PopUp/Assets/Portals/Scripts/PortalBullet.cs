@@ -25,8 +25,9 @@ public class PortalBullet : MonoBehaviour
     {
         if (HitInfo.tag != "Player")
         {
+            Anim.enabled = true;
+            gameObject.GetComponent<Collider2D>().enabled = false;
             Rb.velocity = Vector2.zero;
-            Anim.SetTrigger("Collision");
             if (HitInfo.tag == "Environment")
             {
                 Rotation = Quaternion.Euler(0f, 0f, HitInfo.transform.rotation.eulerAngles.z - 90); //Adjust portal rotation depending on the support that the bullet is landing on
@@ -35,7 +36,7 @@ public class PortalBullet : MonoBehaviour
                 else Instantiate(PortalOut, transform.position, Rotation);
                 if (OldPortal != null) Destroy(OldPortal, 0);
             }
-            Destroy(gameObject, .25f);
+            Destroy(gameObject, .37f);
         }
     }
 

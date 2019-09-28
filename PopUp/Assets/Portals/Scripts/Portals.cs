@@ -25,13 +25,17 @@ public class Portals : MonoBehaviour
                     // Simulate inertia
                     if (Rb != null)
                     {
-                        if (transform.rotation != Destination.transform.rotation)
+                        if (transform.rotation != Destination.transform.rotation) //One one wall one on the ground
                         {
                             if (Destination.position.x > transform.position.x) Rb.velocity = new Vector2(Rb.velocity.y * 2, -10);
                             else Rb.velocity = new Vector2(-Rb.velocity.y * 2, -10);
                         }
-                        else if (Mathf.Abs(Destination.position.x - transform.position.x) < 1) Rb.velocity = new Vector2(Rb.velocity.x, Rb.velocity.y * 0.7f); //Portal above an other. (velocity.y limit)
-                        else Rb.velocity = new Vector2(Rb.velocity.x, -Rb.velocity.y);
+                        else if (transform.rotation.z != 0) //Both on ground
+                        {
+                            if (Mathf.Abs(Destination.position.x - transform.position.x) < 1) Rb.velocity = new Vector2(Rb.velocity.x, Rb.velocity.y * 0.7f);//Portal above an other. (velocity.y limit)
+                            else Rb.velocity = new Vector2(Rb.velocity.x, -Rb.velocity.y);
+                        }
+                        //else the velocity doesn t change //Both on wall
                     }
                 }
             }
