@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Portal
   - Environment
+  - PortalWall
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 3791323339
+    locked: 0
+  - name: Player
+    uniqueID: 1796561801
+    locked: 0
+  - name: ForGround
+    uniqueID: 3592653211
     locked: 0

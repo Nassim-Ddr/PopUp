@@ -29,6 +29,7 @@ public class PortalShoot : MonoBehaviour
         InputIn = Input.GetButtonDown("PortalInShoot");
         InputOut = Input.GetButtonDown("PortalOutShoot");
 
+        //Track mouse positions
         Vector3 Diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float RotZ = Mathf.Atan2(Diff.y, Diff.x) * Mathf.Rad2Deg;
         ShootPoint.rotation = Quaternion.Euler(0f, 0f, RotZ);
@@ -42,6 +43,8 @@ public class PortalShoot : MonoBehaviour
         {
             if (InputIn && !Handling) HandlePortalIn();
             else if (InputOut && !Handling) HandlePortalOut();
+            CC2D.RunVelocity = CC2D.JumpVelocity = 0;
+            CC2D.Handling = true;
         }
 
         if (Input.GetButtonUp("Handle"))
@@ -50,6 +53,7 @@ public class PortalShoot : MonoBehaviour
             if (OldPortal != null) Destroy(OldPortal, 0);
             CC2D.RunVelocity = OldVelX;
             CC2D.JumpVelocity = OldVelY;
+            CC2D.Handling = false;
         }
 
     }
@@ -68,23 +72,17 @@ public class PortalShoot : MonoBehaviour
 
     void HandlePortalIn()
     {
-        Handling = true;
         OldPortal = GameObject.Find("PortalIn(Clone)");
         if (OldPortal != null) Destroy(OldPortal, 0);
         OldPortal = Instantiate(PortalIn, HandlePoint.position, ShootPoint.rotation, HandlePoint);
-        var Coll = OldPortal.transform.Find("Particles").GetComponent<ParticleSystem>().collision;
-        Coll.enabled = false; // To avoid Particles stuck in the ground
-        CC2D.RunVelocity = CC2D.JumpVelocity = 0;
-    }
+        Handling = true;
+    }   
 
     void HandlePortalOut()
     {
-        Handling = true;
         OldPortal = GameObject.Find("PortalOut(Clone)");
         if (OldPortal != null) Destroy(OldPortal, 0);
         OldPortal = Instantiate(PortalOut, HandlePoint.position, ShootPoint.rotation, HandlePoint);
-        var Coll = OldPortal.transform.Find("Particles").GetComponent<ParticleSystem>().collision;//
-        Coll.enabled = false; // To avoid Particles stuck in the ground
-        CC2D.RunVelocity = CC2D.JumpVelocity = 0;
+        Handling = true;
     }
 }

@@ -9,15 +9,15 @@ public class CharacterController2D : MonoBehaviour
     public float JumpVelocity = 10f;
     public LayerMask WhatIsGround;
     public Transform GroundCheck;
+    [HideInInspector] public bool Handling = false;
+
     private Animator Anim;
     private Rigidbody2D Rb;
-
     private float HorizontalMovement;
     private bool VerticalMovement;
     private bool FacingRight = true;
     private bool Grounded;
     private Vector3 ReferenceVelocity = Vector3.zero;
-    private float MaxVelocity = 50f;
 
     private void Awake() 
     {
@@ -53,15 +53,11 @@ public class CharacterController2D : MonoBehaviour
         }
 
         //Vertical Movement
-        if (Grounded && VerticalMovement)
+        if (Grounded && VerticalMovement && !Handling) //Added Handling to avoid starting the jump anim while handling and not actually jumping
         {
             Anim.SetTrigger("VerticalMovement");
             Grounded = false;
             Rb.velocity += Vector2.up * JumpVelocity;
-        }
-        if (Rb.velocity.y > MaxVelocity)
-        {
-            Rb.velocity = new Vector2(Rb.velocity.x, MaxVelocity);
         }
     }
 
