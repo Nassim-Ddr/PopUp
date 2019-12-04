@@ -26,21 +26,7 @@ public class Portals : MonoBehaviour
                     HitInfo.transform.position = Destination.position;
                     Rb = HitInfo.GetComponent<Rigidbody2D>();
                     // Simulate inertia
-                    if (Rb != null)
-                    {
-                        if (transform.rotation != Destination.transform.rotation) //One one wall one on the ground
-                        {
-                            if (transform.rotation.z != 0)
-                            if (Destination.position.x > transform.position.x) Rb.velocity = new Vector2(Rb.velocity.y * 2, -10);
-                            else Rb.velocity = new Vector2(-Rb.velocity.y * 2, -10);
-                        }
-                        else if (transform.rotation.z != 0) //Both on ground
-                        {
-                            if (Mathf.Abs(Destination.position.x - transform.position.x) < 1) Rb.velocity = new Vector2(Rb.velocity.x, Rb.velocity.y * 0.7f);//Portal above an other. (velocity.y limit)
-                            else Rb.velocity = new Vector2(Rb.velocity.x, -Rb.velocity.y);
-                        }
-                        //else the velocity doesn t change //Both on wall
-                    }
+                    if (Rb != null) Rb.velocity = Destination.right * Rb.velocity.magnitude * .9f;
                 }
             }
         }

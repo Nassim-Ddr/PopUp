@@ -6,7 +6,7 @@ public class CharacterController2D : MonoBehaviour
 {
     public float RunVelocity = 10f;
     [Range(0, .3f)] public float MovementSmoothing = .05f;
-    public float JumpVelocity = 10f;
+    public float JumpForce = 2000f;
     public LayerMask WhatIsGround;
     public Transform GroundCheck;
     [HideInInspector] public bool Handling = false;
@@ -57,7 +57,7 @@ public class CharacterController2D : MonoBehaviour
         {
             Anim.SetTrigger("VerticalMovement");
             Grounded = false;
-            Rb.velocity += Vector2.up * JumpVelocity;
+            Rb.AddForce(Vector2.up * JumpForce);
         }
     }
 

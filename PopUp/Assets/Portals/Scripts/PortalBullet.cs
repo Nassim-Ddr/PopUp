@@ -8,18 +8,20 @@ public class PortalBullet : MonoBehaviour
     public float Velocity;
     public GameObject PortalIn;
     public GameObject PortalOut;
-
+    [HideInInspector] public Vector3 MousePosition;
+    [HideInInspector] public Vector3 PlayerPosition;
     private Rigidbody2D Rb;
     private Animator Anim;
     private Quaternion Rotation;
-    
     private GameObject OldPortal;
+    private Camera Cam;
 
     void Start()
     {
         Rb = GetComponent<Rigidbody2D>();
         Rb.velocity = transform.right * Velocity;
         Anim = GetComponent<Animator>();
+        Cam = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
 
     void OnTriggerEnter2D(Collider2D HitInfo) //Notice : to make all game mecanics works i had to spawn the new portel then delete the old one .
@@ -33,7 +35,15 @@ public class PortalBullet : MonoBehaviour
             {
                 if (HitInfo.tag == "Environment")
                 {
-                    Rotation = Quaternion.Euler(0f, 0f, HitInfo.transform.rotation.eulerAngles.z - 90); //Adjust portal rotation depending on the support that the bullet is landing on
+                    MousePosition = Cam.ScreenToWorldPoint(MousePosition);
+                    //Adjust portal rotation depending on the support that the bullet is landing on
+                    if (HitInfo.transform.localEulerAngles.z == 90)
+                        if (MousePosition.x < PlayerPosition.x) Rotation = Quaternion.Euler(0,0,0);
+                        else Rotation = Quaternion.Euler(0,0,180);
+                    else
+                        if (MousePosition.y < PlayerPosition.y) Rotation = Quaternion.Euler(0,0,90);
+                        else Rotation = Quaternion.Euler(0,0,270);
+
                     FindOld(In);
                     if (In) Instantiate(PortalIn, transform.position, Rotation);
                     else Instantiate(PortalOut, transform.position, Rotation);
@@ -46,13 +56,7 @@ public class PortalBullet : MonoBehaviour
 
     void FindOld(bool PIn)
     {
-        if (PIn)
-        {
-            OldPortal = GameObject.Find("PortalIn(Clone)");
-        }
-        else
-        {
-            OldPortal = GameObject.Find("PortalOut(Clone)");
-        }
+        if (PIn) OldPortal = GameObject.Find("PortalIn(Clone)");
+        else OldPortal = GameObject.Find("PortalOut(Clone)");
     }
 }
