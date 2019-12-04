@@ -10,6 +10,7 @@ public class PortalShoot : MonoBehaviour
     public GameObject PortalOutBullet;
     public GameObject PortalIn;
     public GameObject PortalOut;
+    public GameObject PortalHandleLight;
 
     private CharacterController2D CC2D;
     private GameObject OldPortal;
@@ -80,6 +81,7 @@ public class PortalShoot : MonoBehaviour
         OldPortal = GameObject.Find("PortalIn(Clone)");
         if (OldPortal != null) Destroy(OldPortal, 0);
         OldPortal = Instantiate(PortalIn, HandlePoint.position, ShootPoint.rotation, HandlePoint);
+        Instantiate(PortalHandleLight,HandlePoint.position,Quaternion.Euler(0,0,-90),OldPortal.transform);
         Handling = true;
     }   
 
@@ -88,6 +90,7 @@ public class PortalShoot : MonoBehaviour
         OldPortal = GameObject.Find("PortalOut(Clone)");
         if (OldPortal != null) Destroy(OldPortal, 0);
         OldPortal = Instantiate(PortalOut, HandlePoint.position, ShootPoint.rotation, HandlePoint);
+        Instantiate(PortalHandleLight,HandlePoint.position,Quaternion.Euler(0,0,-90),OldPortal.transform);
         Handling = true;
     }
 }
