@@ -2,35 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class View
+{
+    public int Next,Previous;
+    public bool Swap;
+    public Transform ViewPosition;
+}
+
 public class CameraManager : MonoBehaviour
 {
-    public Transform[] Views;
+    public View[] Views;
     public Camera Cam;
-
-    private int i,NextView,CurrentView = 0;
-    private float min,x;
-
+    private View CurrentView;
+    
+    void Start() 
+    {
+        CurrentView = Views[0];    
+    }
     void OnTriggerExit2D(Collider2D ExitInfo)
     {
-        if (ExitInfo.name == "Player") Cam.transform.position = Views[FindNextView(ExitInfo.transform.position)].position;
-    }
-
-    int FindNextView(Vector3 ExitPos)
-    {
-        min = Vector3.Distance(Views[0].position,ExitPos);
-        for(i=1;i<Views.Length;i++)
+        if (ExitInfo.tag == "Player")
         {
-            //if (CurrentView != i)
-            //{
-                x = Vector3.Distance(Views[i].position,ExitPos);
-                if (min > x)
-                {
-                    NextView = i;
-                    min = x;
-                }
-            //}
+            if (!CurrentView.Swap)
+                if (ExitInfo.transform.position.x > CurrentView.ViewPosition.position.x) CurrentView = Views[CurrentView.Next];
+                else CurrentView = Views[CurrentView.Previous];
+            else 
+                if (ExitInfo.transform.position.x < CurrentView.ViewPosition.position.x) CurrentView = Views[CurrentView.Next];
+                else CurrentView = Views[CurrentView.Previous];
+            Cam.transform.position = CurrentView.ViewPosition.position;
         }
-        CurrentView = NextView;
-        return NextView;
     }
 }

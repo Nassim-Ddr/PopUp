@@ -1246,7 +1246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 684166262}
   m_Layer: 0
-  m_Name: View1
+  m_Name: View0
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1991,9 +1991,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Views:
-  - {fileID: 684166262}
-  - {fileID: 2006261914}
-  - {fileID: 2027721887}
+  - Next: 1
+    Previous: 0
+    Swap: 0
+    ViewPosition: {fileID: 684166262}
+  - Next: 2
+    Previous: 0
+    Swap: 0
+    ViewPosition: {fileID: 2006261914}
+  - Next: 2
+    Previous: 1
+    Swap: 1
+    ViewPosition: {fileID: 2027721887}
   Cam: {fileID: 519420031}
 --- !u!61 &1517944256
 BoxCollider2D:
@@ -7673,7 +7682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2006261914}
   m_Layer: 0
-  m_Name: View2
+  m_Name: View1
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -7703,7 +7712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2027721887}
   m_Layer: 0
-  m_Name: View3
+  m_Name: View2
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
