@@ -8,6 +8,7 @@ public class View
     public int Next,Previous;
     public bool Swap;
     public Transform ViewPosition;
+    public float ViewSize;
 }
 
 public class CameraManager : MonoBehaviour
@@ -31,6 +32,9 @@ public class CameraManager : MonoBehaviour
                 if (ExitInfo.transform.position.x < CurrentView.ViewPosition.position.x) CurrentView = Views[CurrentView.Next];
                 else CurrentView = Views[CurrentView.Previous];
             Cam.transform.position = CurrentView.ViewPosition.position;
+            Cam.orthographicSize = CurrentView.ViewSize;
+            float x = Cam.orthographicSize/7;
+            transform.localScale = new Vector3(x,x,1);
         }
     }
 }

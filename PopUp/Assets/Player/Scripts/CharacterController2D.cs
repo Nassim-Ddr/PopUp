@@ -43,14 +43,9 @@ public class CharacterController2D : MonoBehaviour
         Rb.velocity = Vector3.SmoothDamp(Rb.velocity, TargetVelocity, ref ReferenceVelocity, MovementSmoothing);
             
         //Flip : We use rotate to also rotate the shootpoint (case of a shooting game) you can also use the SpriteRendrer.flix.y=true;
-        if (HorizontalMovement > 0 && !FacingRight)
-        {
-            Flip();
-        }
-        else if (HorizontalMovement < 0 && FacingRight)
-        {
-            Flip();
-        }
+        if (HorizontalMovement > 0 && !FacingRight) Flip();
+        else if (HorizontalMovement < 0 && FacingRight) Flip();
+        
 
         //Vertical Movement
         if (Grounded && VerticalMovement && !Handling) //Added Handling to avoid starting the jump anim while handling and not actually jumping
