@@ -5,14 +5,14 @@ using UnityEngine;
 public class Portals : MonoBehaviour
 {
     public bool In;
+    
     private Transform Destination;
-
     private Rigidbody2D Rb;
     private GameObject V; //used to not repeat the 18 line
 
     void OnTriggerEnter2D(Collider2D HitInfo)
     {
-        if (HitInfo.tag != "Environment" && HitInfo.tag != "Portal") 
+        if (HitInfo.tag != "Environment" && HitInfo.tag != "Portal" && HitInfo.tag != "NotTpable") 
         {
             if (Vector3.Distance(HitInfo.transform.position, transform.position) > 0.5f)
             {

@@ -10,6 +10,7 @@ public class PortalBullet : MonoBehaviour
     public GameObject PortalOut;
     [HideInInspector] public Vector3 MousePosition;
     [HideInInspector] public Vector3 PlayerPosition;
+    
     private Rigidbody2D Rb;
     private Animator Anim;
     private Quaternion Rotation;
@@ -26,7 +27,7 @@ public class PortalBullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D HitInfo) //Notice : to make all game mecanics works i had to spawn the new portel then delete the old one .
     {
-        if (HitInfo.tag != "Player")
+        if (HitInfo.tag != "Player" && HitInfo.tag != "NotTpable")
         {
             Anim.enabled = true;
             gameObject.GetComponent<Collider2D>().enabled = false;
