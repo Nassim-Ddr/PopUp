@@ -1,5 +1,5 @@
 What is PopUp?  
-  PopUp is my first game made using Unity, it's a simple 2D side scroller game where you have to shoot portals to pass throught levels.  
+  PopUp is my first game made using Unity, it's a simple 2D side scroller game where you have to use portals to pass throught levels.  
 
 How does it work?  
   You can move by using the arrow keys (Or A and D), shoot portals with the right and left mouse click and when you step on a portal it teleports
@@ -9,4 +9,4 @@ How does it work?
 
 Note: The game is not 100% finished (mainly because i wanted to try something else) so there is no ui/menu elements in the game but the main
 gameplay mechanics are implemented.
-Hope you enjoy ;D
+
