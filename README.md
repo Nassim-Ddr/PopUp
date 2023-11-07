@@ -1,12 +1,13 @@
-What is PopUp?  
-  PopUp is my first game made using Unity, it's a simple 2D side scroller game where you have to use portals to pass throught levels.  
+# About PopUp
 
-How does it work?  
-  You can move by using the arrow keys (Or A and D), shoot portals with the right and left mouse click and when you step on a portal it teleports
-  you the second one.  Who could guess ? :V
-  The portal teleportation saves your physics (Velocity, Force direction etc) so you can for exemple shoot a portal on the floor and the other on the
-  ceiling so you can accumulate vertical velocity, and then shoot the ceiling portal to the ground to propel yourself up.
+**PopUp** is my debut creation in Unity, and it represents a straightforward 2D side-scrolling game that revolves around the clever usage of portals to navigate through various levels.
 
-Note: The game is not 100% finished (mainly because i wanted to try something else) so there is no ui/menu elements in the game but the main
-gameplay mechanics are implemented.
+## How PopUp Works
+
+You can move your character using the arrow keys, or alternatively, the A and D keys. The gameplay involves shooting portals by utilizing both the right and left mouse buttons. When you step onto one portal, it instantaneously teleports you to the corresponding portal's location.
+
+What makes it interesting is that the portal teleportation retains your physical attributes, such as velocity and force direction. 
+For instance, you can fire a portal on the floor and another on the ceiling to accumulate vertical velocity. Then, you can shoot the ceiling portal towards the ground, launching yourself upward.
+
+Please note that PopUp is a work in progress, lacking certain elements like UI and menu components, as I wanted to explore some different creative directions. However, the core gameplay mechanics are fully implemented and ready for you to enjoy.
 
